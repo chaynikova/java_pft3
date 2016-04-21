@@ -5,7 +5,8 @@ package pft.sandbox;
  */
 public class Point {
   //первая координата точки
-  public double x, x1, x2;
+  public double x;
   //вторая координата точки
-  public double y, y1, y2;
-}
+  public double y;
+
+ }

@@ -6,21 +6,22 @@ package pft.sandbox;
 public class Task2 {
 
   public static void main(String[] args){
-    Point p = new Point();
-   p.x1 = 1;
-   p.y1 = 1;
-   p.x2 = 2;
-   p.y2 = 2;
+    Point p1 = new Point();
+    Point p2 = new Point();
+   p1.x = 1;
+   p1.y = 1;
+   p2.x = 2;
+   p2.y = 2;
 
-    System.out.println("Points coordinates: \nx1 = " + p.x1 + " and y1 = " + p.y1  + "\nx2 = " + p.x2 + " and y2 = " + p.y2  + "\nThe distance is: "  + distance (p));
+    System.out.println("Points coordinates: \nx1 = " +  p1.x + " and y1 = " + p1.y  + "\nx2 = " + p2.x + " and y2 = " + p2.y  + "\nThe distance is: "  + distance (p1,p2));
       }
 
-  public static double distance (Point p){
-   p.x = p.x2-p.x1;
-   p.y = p.y2-p.y1;
-   p.x = Math.pow(p.x,2);
-   p.y = Math.pow(p.y,2);
-   double diff = p.x+p.y;
+  public static double distance (Point p1, Point p2){
+   p1.x = p2.x-p1.x;
+   p2.y = p2.y-p1.y;
+   p1.x = Math.pow(p1.x,2);
+   p2.y = Math.pow(p2.y,2);
+   double diff = p1.x+p2.y;
    return Math.sqrt(diff);
 
   }
