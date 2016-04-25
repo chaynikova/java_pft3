@@ -5,14 +5,18 @@ package pft.sandbox;
  */
 public class Task2 {
 
-  public static void main(String[] args){
-    //Point p1 = new Point(1,1);
-  //  Point p2 = new Point(2,2);
+ public static void main (String [] args){
 
-   // System.out.println("Points coordinates: \nx1 = " +  p1.x + " and y1 = " + p1.y  + "\nx2 = " + p2.x + " and y2 = " + p2.y  + "\nThe distance is: "  + p.distance ());
-   //   }
+   double x1 = 1;
+   double x2 = 2;
+   double y1 = 1;
+   double y2 = 2;
 
+   System.out.println("Distance is: " + distance(x1, x2, y1, y2));
+ }
 
+  public static double distance (double x1, double x2, double y1, double y2){
 
+    return Math.sqrt(Math.pow((x2-x1),2)+Math.pow((y2-y1),2));
   }
 }
