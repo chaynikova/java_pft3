@@ -5,8 +5,8 @@ package pft.sandbox;
  */
 public class Task2 {
   public static void main (String [] args){
-Point p1 = new Point(1, 1);
-Point p2 = new Point(2, 2);
+Point p1 = new Point(17, 12);
+Point p2 = new Point(11, 22);
 
 
    System.out.println("Distance is: " + p2.distance(p1));
