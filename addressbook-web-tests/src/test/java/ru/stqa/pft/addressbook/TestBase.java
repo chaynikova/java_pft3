@@ -83,4 +83,47 @@ public class TestBase {
   protected void selectGroup() {
     wd.findElement(By.name("selected[]")).click();
   }
+
+  protected void fillContactForm(ContactData contactData) {
+    wd.findElement(By.name("firstname")).click();
+    wd.findElement(By.name("firstname")).clear();
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getContactname());
+    wd.findElement(By.name("middlename")).click();
+    wd.findElement(By.name("middlename")).clear();
+    wd.findElement(By.name("middlename")).sendKeys(contactData.getContactmiddlename());
+    wd.findElement(By.name("lastname")).click();
+    wd.findElement(By.name("lastname")).clear();
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getContactlastname());
+    wd.findElement(By.name("photo")).sendKeys(contactData.getFilepath());
+    wd.findElement(By.name("company")).click();
+    wd.findElement(By.name("company")).clear();
+    wd.findElement(By.name("company")).sendKeys(contactData.getContactcompany());
+    wd.findElement(By.name("theform")).click();
+    wd.findElement(By.name("home")).click();
+    wd.findElement(By.name("mobile")).click();
+    wd.findElement(By.name("mobile")).clear();
+    wd.findElement(By.name("mobile")).sendKeys("0505005050");
+    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[9]")).isSelected()) {
+      wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[9]")).click();
+    }
+    if (!wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[2]")).isSelected()) {
+      wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[2]")).click();
+    }
+    wd.findElement(By.name("byear")).click();
+    wd.findElement(By.name("byear")).clear();
+    wd.findElement(By.name("byear")).sendKeys(contactData.getContactbirthyear());
+
+  }
+
+  protected void submitContactCreation() {
+    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+  }
+
+  protected void gotoHomePage() {
+    wd.findElement(By.linkText("home page")).click();
+  }
+
+  protected void gotoContactPage() {
+    wd.findElement(By.linkText("add new")).click();
+  }
 }
