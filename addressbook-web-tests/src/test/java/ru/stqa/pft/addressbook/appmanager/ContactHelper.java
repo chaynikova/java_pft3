@@ -21,8 +21,6 @@ public class ContactHelper extends HelperBase {
     type(By.name("lastname"), contactData.getContactlastname());
     sendkeys(By.name("photo"), contactData.getFilepath());
     type(By.name("company"), contactData.getContactcompany());
-    click(By.name("theform"));
-    click(By.name("home"));
     type(By.name("mobile"), contactData.getContactphone());
 
     if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[9]")).isSelected()) {
@@ -47,5 +45,13 @@ public class ContactHelper extends HelperBase {
   public void deleteSelectedContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     wd.switchTo().alert().accept();
+  }
+
+  public void submitContactModification() {
+    click(By.name("update"));
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//tr[@class='odd']/td[8]/a/img[@title='Edit']"));
   }
 }
