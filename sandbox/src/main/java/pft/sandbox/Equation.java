@@ -17,16 +17,19 @@ public class Equation {
 
     double d = b * b - 4 * a * c;
 
-    if (d > 0) {
-      n = 2;
+    if (a==0){
+      System.out.println("Это вырожденное уравнение");
     } else {
-      if (d == 0) {
+      if (d > 0) {
+        n = 2;
+      } else if (d == 0) {
         n = 1;
       } else {
         n = 0;
       }
     }
-  }
+}
+
 
   public int rootNumber(){
     return n;
