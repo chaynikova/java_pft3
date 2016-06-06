@@ -8,8 +8,9 @@ public class ContactData {
   private final String contactcompany;
   private final String contactbirthyear;
   private final String contactphone;
+  private String group;
 
-  public ContactData(String contactname, String contactmiddlename, String contactlastname, String filepath, String contactcompany, String contactbirthyear, String contactphone) {
+  public ContactData(String contactname, String contactmiddlename, String contactlastname, String filepath, String contactcompany, String contactbirthyear, String contactphone, String group) {
     this.contactname = contactname;
     this.contactmiddlename = contactmiddlename;
     this.contactlastname = contactlastname;
@@ -18,6 +19,7 @@ public class ContactData {
     this.contactbirthyear = contactbirthyear;
     this.contactphone = contactphone;
 
+    this.group = group;
   }
 
   public String getContactname() {    return contactname;  }
@@ -46,4 +48,7 @@ public class ContactData {
     return contactphone;
   }
 
+  public String getGroup() {
+    return group;
+  }
 }
