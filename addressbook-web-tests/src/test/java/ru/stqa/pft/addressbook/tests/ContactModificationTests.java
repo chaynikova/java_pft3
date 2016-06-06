@@ -11,10 +11,9 @@ public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification() {
     app.getNavigationHelper().gotoHomePage();
-    // app.getGroupHelper().selectGroup();
-      app.getContactHelper().initContactModification();
+    app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("test2", "test2", "test2", "C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg", "test3", "1986", "0505015151", null), false);
-      app.getContactHelper().submitContactModification();
-     app.getNavigationHelper().gotoHomePage();
+    app.getContactHelper().submitContactModification();
+    app.getNavigationHelper().gotoHomePage();
   }
 }
