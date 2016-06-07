@@ -17,6 +17,8 @@ public class GroupData {
     return name;
   }
 
+  public String getParentGroup() { return parentGroup;  }
+
   public String getHeader() {
     return header;
   }
@@ -25,5 +27,5 @@ public class GroupData {
     return footer;
   }
 
-  public String getParentGroup() { return parentGroup;  }
+
 }

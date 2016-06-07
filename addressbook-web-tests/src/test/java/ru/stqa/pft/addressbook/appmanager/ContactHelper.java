@@ -4,12 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.ui.Select;
+
+
 import static org.testng.Assert.*;
 
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-
 
 
 /**
@@ -18,12 +20,14 @@ import ru.stqa.pft.addressbook.model.ContactData;
 public class ContactHelper extends HelperBase {
 
 
+
+
   public ContactHelper(WebDriver wd) {
     super(wd);
 
   }
 
-  public void fillContactForm(ContactData contactData, boolean creation ) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getContactname());
     type(By.name("middlename"), contactData.getContactmiddlename());
     type(By.name("lastname"), contactData.getContactlastname());
@@ -42,12 +46,12 @@ public class ContactHelper extends HelperBase {
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
-        Assert.assertFalse(isElementPresent(By.name("new group")));
+      Assert.assertFalse(isElementPresent(By.name("new group")));
     }
   }
 
   public void submitContactCreation() {
-    click(By.xpath("//div[@id='content']/form/input[21]"));
+    click(By.name("submit"));
   }
 
   public void selectContact() {
@@ -65,6 +69,20 @@ public class ContactHelper extends HelperBase {
   }
 
   public void initContactModification() {
-    click(By.xpath("//tr[@class='odd']/td[8]/a/img[@title='Edit']"));
+
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img[@title='Edit']"));
   }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
+  }
+
+  public void createContact(ContactData contactData) {
+
+      fillContactForm(new ContactData("test2", "test2", "test2", "C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg", "test2", "1985", "0505005050", "second"), false);
+    submitContactCreation();
+
+  }
+
+
 }
