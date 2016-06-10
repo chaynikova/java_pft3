@@ -5,8 +5,9 @@ public class GroupData {
   private final String parentGroup;
   private final String header;
   private final String footer;
+  private  int id;
 
-   private  int id;
+
   public GroupData(int id, String name, String parentGroup, String header, String footer) {
     this.id = id;
     this.name = name;
