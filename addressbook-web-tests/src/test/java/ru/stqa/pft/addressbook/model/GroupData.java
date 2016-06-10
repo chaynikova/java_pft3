@@ -5,10 +5,8 @@ public class GroupData {
   private final String parentGroup;
   private final String header;
   private final String footer;
-  private  int id;
 
-
-
+   private  int id;
   public GroupData(int id, String name, String parentGroup, String header, String footer) {
     this.id = id;
     this.name = name;
@@ -17,7 +15,7 @@ public class GroupData {
     this.footer = footer;
   }
     public GroupData( String name, String parentGroup, String header, String footer) {
-      this.id = 0;
+      this.id = Integer.MAX_VALUE;
       this.name = name;
       this.parentGroup = parentGroup;
       this.header = header;
@@ -48,31 +46,28 @@ public class GroupData {
 
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    GroupData groupData = (GroupData) o;
-
-    if (id != groupData.id) return false;
-    return name != null ? name.equals(groupData.name) : groupData.name == null;
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
-    result = 31 * result + id;
-    return result;
-  }
-
-  @Override
   public String toString() {
     return "GroupData{" +
 
             "name='" + name + '\'' +
             ", id='" + id + '\'' +
             '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    GroupData groupData = (GroupData) o;
+
+    return name != null ? name.equals(groupData.name) : groupData.name == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    return name != null ? name.hashCode() : 0;
   }
 
 }
