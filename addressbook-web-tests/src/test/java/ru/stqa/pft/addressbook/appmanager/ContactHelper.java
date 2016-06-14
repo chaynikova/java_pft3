@@ -60,7 +60,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContact(int index) {
-    click(By.name("selected[]"));
+wd.findElements(By.name("selected[]")).get(index).click();
   }
 
 
@@ -84,24 +84,30 @@ public class ContactHelper extends HelperBase {
 
   public void createContact(ContactData contactData) {
 
-      fillContactForm(new ContactData("test2", "test2", "test2", "C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg", "test2", "1985", "0505005050", "second"), false);
-    submitContactCreation();
+    // fillContactForm(new ContactData("test2", "test2", "test2", "C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg", "test2", "1985", "0505005050", "second"), false);
+
+  fillContactForm(contactData, false);
+   submitContactCreation();
 
   }
 
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("tr.entry"));
-    for (WebElement element : elements)
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+
+       for (WebElement element : elements)
     {
-      String name = element.getText();
-      String lastname = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
+      int id = Integer.parseInt(element.findElement(By.xpath("td[1]/input")).getAttribute("id"));
+      String name = element.findElement(By.xpath("td[3]")).getText();
+      String lastname = element.findElement(By.xpath("td[2]")).getText();
       ContactData contact = new ContactData (id, name, null, lastname, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;
   }
 
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
 }
