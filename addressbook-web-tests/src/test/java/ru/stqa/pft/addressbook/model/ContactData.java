@@ -6,6 +6,8 @@ public class ContactData {
   private  String contactcompany;
   private  String contactbirthyear;
   private  String contactphone;
+  private String mobilephone;
+  private String workphone;
   private  String contactmiddlename;
   private  String filepath;
   private String group;
@@ -46,6 +48,10 @@ public class ContactData {
     return group;
   }
 
+  public String getMobilephone() {return mobilephone;}
+
+  public String getWorkphone() {return workphone;}
+
   public Integer id() {
     return id;
   }
@@ -74,6 +80,14 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withMobilephone(String mobilephone) {
+    this.mobilephone = mobilephone;
+    return this;
+  }
+  public ContactData withWorkphone(String workphone) {
+    this.workphone = workphone;
+    return this;
+  }
   public ContactData withContactphone(String contactphone) {
     this.contactphone = contactphone;
     return this;

@@ -1,12 +1,10 @@
 package ru.stqa.pft.addressbook.tests;
 
-import org.testng.Assert;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -27,7 +25,8 @@ public class ContactDeletionTests extends TestBase{
               .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985").withContactphone("0505005050").withGroup("second"));
     }
   }
-  @Test
+
+  @Test(enabled = false)
   public void testContactDeletion(){
     app.goTo().homePage();
     Contacts before = app.contact().all();
