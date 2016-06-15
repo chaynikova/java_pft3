@@ -12,7 +12,9 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -60,6 +62,10 @@ public class ContactHelper extends HelperBase {
 wd.findElements(By.name("selected[]")).get(index).click();
   }
 
+  public void selectContactById(int id) {
+
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
 
   public void deleteSelectedContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
@@ -85,6 +91,7 @@ wd.findElements(By.name("selected[]")).get(index).click();
   }
   public void modify(ContactData contact) {
     returnToHomePage();
+    selectContactById(contact.getId());
     initContactModification();
     fillContactForm(contact, false);
     submitContactModification();
@@ -93,6 +100,12 @@ wd.findElements(By.name("selected[]")).get(index).click();
 
   public void delete(int index) {
    selectContact(index);
+    deleteSelectedContact();
+    returnToHomePage();
+  }
+
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteSelectedContact();
     returnToHomePage();
   }
@@ -112,6 +125,21 @@ wd.findElements(By.name("selected[]")).get(index).click();
     return contacts;
   }
 
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+
+    for (WebElement element : elements)
+    {
+      int id = Integer.parseInt(element.findElement(By.xpath("td[1]/input")).getAttribute("id"));
+      String name = element.findElement(By.xpath("td[3]")).getText();
+      String lastname = element.findElement(By.xpath("td[2]")).getText();
+      ContactData contact = new ContactData().withId(id).withContactname(name).withContactlastname(lastname);
+      contacts.add(contact);
+    }
+    return contacts;
+  }
+
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
@@ -121,5 +149,6 @@ wd.findElements(By.name("selected[]")).get(index).click();
     return;
   }
     click(By.linkText("home")); }
+
 
 }

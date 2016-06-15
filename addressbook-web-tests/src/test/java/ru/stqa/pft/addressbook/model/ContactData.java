@@ -105,20 +105,23 @@ public class ContactData {
   }
 
   @Override
-  public int hashCode() {
-    int result = contactname != null ? contactname.hashCode() : 0;
-    result = 31 * result + (contactlastname != null ? contactlastname.hashCode() : 0);
-    return result;
-  }
-  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
 
     ContactData that = (ContactData) o;
 
+    if (id != that.id) return false;
     if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
     return contactlastname != null ? contactlastname.equals(that.contactlastname) : that.contactlastname == null;
 
+  }
+
+  @Override
+  public int hashCode() {
+    int result = contactname != null ? contactname.hashCode() : 0;
+    result = 31 * result + (contactlastname != null ? contactlastname.hashCode() : 0);
+    result = 31 * result + id;
+    return result;
   }
 }
