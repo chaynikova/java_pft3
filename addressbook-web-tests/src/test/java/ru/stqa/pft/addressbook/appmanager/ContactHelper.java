@@ -88,6 +88,7 @@ wd.findElements(By.name("selected[]")).get(index).click();
   public void create(ContactData contactData) {
    fillContactForm(contactData, false);
    submitContactCreation();
+    contactCache = null;
 
   }
   public void modify(ContactData contact) {
@@ -96,6 +97,7 @@ wd.findElements(By.name("selected[]")).get(index).click();
     initContactModification();
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -108,6 +110,7 @@ wd.findElements(By.name("selected[]")).get(index).click();
   public void delete(ContactData contact) {
     selectContactById(contact.getId());
     deleteSelectedContact();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -125,9 +128,13 @@ wd.findElements(By.name("selected[]")).get(index).click();
     }
     return contacts;
   }
+private Contacts contactCache = null;
 
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null){
+      return new Contacts(contactCache);
+    }
+    contactCache= new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
 
     for (WebElement element : elements)
@@ -136,9 +143,9 @@ wd.findElements(By.name("selected[]")).get(index).click();
       String name = element.findElement(By.xpath("td[3]")).getText();
       String lastname = element.findElement(By.xpath("td[2]")).getText();
       ContactData contact = new ContactData().withId(id).withContactname(name).withContactlastname(lastname);
-      contacts.add(contact);
+      contactCache.add(contact);
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 
   public int getContactCount() {
