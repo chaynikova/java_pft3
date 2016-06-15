@@ -1,49 +1,19 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-  private final String contactname;
-  private final String contactlastname;
-  private final String contactcompany;
-  private final String contactbirthyear;
-  private final String contactphone;
-  private final String contactmiddlename;
-  private final String filepath;
+  private  String contactname;
+  private  String contactlastname;
+  private  String contactcompany;
+  private  String contactbirthyear;
+  private  String contactphone;
+  private  String contactmiddlename;
+  private  String filepath;
   private String group;
-  private int id;
+  private int id =Integer.MAX_VALUE;
 
-  public ContactData( String contactname, String contactmiddlename, String contactlastname, String filepath, String contactcompany, String contactbirthyear, String contactphone, String group) {
-
-    this.id = Integer.MAX_VALUE;
-    this.contactname = contactname;
-    this.contactmiddlename = contactmiddlename;
-    this.contactlastname = contactlastname;
-    this.filepath = filepath;
-    this.contactcompany = contactcompany;
-    this.contactbirthyear = contactbirthyear;
-    this.contactphone = contactphone;
-    this.group = group;
-  }
-
-
-  public ContactData(int id, String contactname, String contactmiddlename, String contactlastname, String filepath, String contactcompany, String contactbirthyear, String contactphone, String group) {
-    this.id = id;
-    this.contactname = contactname;
-    this.contactmiddlename = contactmiddlename;
-    this.contactlastname = contactlastname;
-    this.filepath = filepath;
-
-    this.contactcompany = contactcompany;
-    this.contactbirthyear = contactbirthyear;
-    this.contactphone = contactphone;
-    this.group = group;
-  }
 
   public int getId() {
     return id;
-  }
-
-  public void setId(int id) {
-    this.id = id;
   }
 
   public String getContactname() {    return contactname;  }
@@ -80,6 +50,49 @@ public class ContactData {
     return id;
   }
 
+  public ContactData withId(int id) {
+    this.id = id;
+    return this;
+  }
+  public ContactData withContactname(String contactname) {
+    this.contactname = contactname;
+    return this;
+  }
+
+  public ContactData withContactlastname(String contactlastname) {
+    this.contactlastname = contactlastname;
+    return this;
+  }
+
+  public ContactData withContactcompany(String contactcompany) {
+    this.contactcompany = contactcompany;
+    return this;
+  }
+
+  public ContactData withContactbirthyear(String contactbirthyear) {
+    this.contactbirthyear = contactbirthyear;
+    return this;
+  }
+
+  public ContactData withContactphone(String contactphone) {
+    this.contactphone = contactphone;
+    return this;
+  }
+
+  public ContactData withContactmiddlename(String contactmiddlename) {
+    this.contactmiddlename = contactmiddlename;
+    return this;
+  }
+
+  public ContactData withFilepath(String filepath) {
+    this.filepath = filepath;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
 
 
   @Override

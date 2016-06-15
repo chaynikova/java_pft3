@@ -19,14 +19,16 @@ public class ContactModificationTests extends TestBase {
     app.goTo().homePage();
      if (app.contact().list().size() == 0) {
       app.goTo().contactPage();
-      app.contact().create(new ContactData("test2", "test2", "test2", "C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg", "test2", "1985", "0505005050", "second"));
+      app.contact().create(new ContactData().withContactname("test2").withContactmiddlename("test2").withContactlastname("test2")
+              .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985").withContactphone("0505005050").withGroup("second"));
     }
   }
   @Test
   public void testContactModification() {
     List<ContactData> before = app.contact().list();
     int index = before.size() - 1;
-    ContactData contact = new ContactData(before.get(index).getId(), "test2", "testModified", "test2", "C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg", "test3", "1987", "0505015151", null);
+    ContactData contact = new ContactData().withId(before.get(index).getId()).withContactname("test2").withContactmiddlename("test2").withContactlastname("test2")
+            .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985").withContactphone("0505005050");
     app.contact().modify(contact);
 
     List<ContactData> after = app.contact().list();

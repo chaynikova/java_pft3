@@ -106,7 +106,7 @@ wd.findElements(By.name("selected[]")).get(index).click();
       int id = Integer.parseInt(element.findElement(By.xpath("td[1]/input")).getAttribute("id"));
       String name = element.findElement(By.xpath("td[3]")).getText();
       String lastname = element.findElement(By.xpath("td[2]")).getText();
-      ContactData contact = new ContactData (id, name, null, lastname, null, null, null, null, null);
+      ContactData contact = new ContactData().withId(id).withContactname(name).withContactlastname(lastname);
       contacts.add(contact);
     }
     return contacts;
