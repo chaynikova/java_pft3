@@ -148,7 +148,7 @@ private Contacts contactCache = null;
     return new Contacts(contactCache);
   }
 
-  public int getContactCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
@@ -157,6 +157,7 @@ private Contacts contactCache = null;
     return;
   }
     click(By.linkText("home")); }
+
 
 
 }

@@ -21,13 +21,14 @@ public class ContactCreationTests extends TestBase {
     Contacts before = app.contact().all();
     app.goTo().contactPage();
     ContactData contact = new ContactData().withContactname("test2").withContactmiddlename("test2").withContactlastname("test2")
-            .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985").withContactphone("0505005050").withGroup("second");
+            .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985")
+            .withContactphone("0505005050").withGroup("second");
+
     app.contact().create(contact);
     app.goTo().homePage();
-    Contacts after = app.contact().all();
-
-    assertThat(after.size(), equalTo(before.size() + 1));
-    assertThat(after, equalTo(
+    assertThat(app.contact().count(), equalTo(before.size() + 1));
+      Contacts after = app.contact().all();
+      assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
   }
 }
