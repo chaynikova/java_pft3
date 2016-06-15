@@ -78,12 +78,12 @@ wd.findElements(By.name("selected[]")).get(index).click();
     return isElementPresent(By.name("selected[]"));
   }
 
-  public void createContact(ContactData contactData) {
+  public void create(ContactData contactData) {
    fillContactForm(contactData, false);
    submitContactCreation();
 
   }
-  public void modifyContact(ContactData contact) {
+  public void modify(ContactData contact) {
     returnToHomePage();
     initContactModification();
     fillContactForm(contact, false);
@@ -91,8 +91,13 @@ wd.findElements(By.name("selected[]")).get(index).click();
     returnToHomePage();
   }
 
+  public void delete(int index) {
+   selectContact(index);
+    deleteSelectedContact();
+    returnToHomePage();
+  }
 
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
 
