@@ -1,19 +1,15 @@
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ThreadGuard;
 import org.openqa.selenium.support.ui.Select;
 
 
-import static org.testng.Assert.*;
-
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +21,7 @@ import java.util.List;
 public class ContactHelper extends HelperBase {
 
 
+  private NavigationHelper navigationHelper;
 
 
   public ContactHelper(WebDriver wd) {
@@ -74,7 +71,6 @@ wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void initContactModification() {
-
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img[@title='Edit']"));
   }
 
@@ -83,12 +79,16 @@ wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void createContact(ContactData contactData) {
-
-    // fillContactForm(new ContactData("test2", "test2", "test2", "C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg", "test2", "1985", "0505005050", "second"), false);
-
-  fillContactForm(contactData, false);
+   fillContactForm(contactData, false);
    submitContactCreation();
 
+  }
+  public void modifyContact(ContactData contact) {
+    returnToHomePage();
+    initContactModification();
+    fillContactForm(contact, false);
+    submitContactModification();
+    returnToHomePage();
   }
 
 
@@ -110,4 +110,11 @@ wd.findElements(By.name("selected[]")).get(index).click();
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
+
+  public void returnToHomePage() {
+    if (isElementPresent(By.id("maintable"))){
+    return;
+  }
+    click(By.linkText("home")); }
+
 }

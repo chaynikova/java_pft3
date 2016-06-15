@@ -14,13 +14,10 @@ import java.util.List;
  * Created by t.chaynikova on 5/23/2016.
  */
 public class GroupHelper extends HelperBase {
-  private NavigationHelper navigationHelper;
 
   public GroupHelper(WebDriver wd) {
     super(wd);
   }
-
-//  NavigationHelper navigationHelper = new NavigationHelper();
 
   public void returnToGroupPage() {
     click(By.linkText("group page"));
@@ -66,6 +63,15 @@ public class GroupHelper extends HelperBase {
     submitGroupCreation();
     returnToGroupPage();
   }
+
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group, true);
+    submitGroupModification();
+    returnToGroupPage();
+  }
+
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
