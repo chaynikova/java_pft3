@@ -133,8 +133,12 @@ wd.findElements(By.name("selected[]")).get(index).click();
   }
 private Contacts contactCache = null;
 
-    public Contacts all() {
-    contactCache = new Contacts();
+  public Contacts all() {
+    if (contactCache != null){
+      return new Contacts(contactCache);
+    }
+    contactCache= new Contacts();
+
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
 
     for (WebElement element : elements)
