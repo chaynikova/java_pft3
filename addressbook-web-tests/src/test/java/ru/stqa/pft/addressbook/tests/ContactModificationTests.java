@@ -30,9 +30,6 @@ public class ContactModificationTests extends TestBase {
     }
   }
 
-
-
-
   @Test
   public void testContactModification() {
     Contacts before = app.contact().all();

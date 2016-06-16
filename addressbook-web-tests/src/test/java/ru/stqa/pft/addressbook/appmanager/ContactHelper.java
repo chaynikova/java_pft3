@@ -133,33 +133,9 @@ wd.findElements(By.name("selected[]")).get(index).click();
   }
 private Contacts contactCache = null;
 
-  public Contacts all() {
-    if (contactCache != null){
-      return new Contacts(contactCache);
-
-         }
+    public Contacts all() {
     contactCache = new Contacts();
-    List<WebElement> rows = wd.findElements(By.xpath("//tr[@name='entry']"));
-    for (WebElement row : rows)
-    {
-
-      //List<WebElement> cells = row.findElements(By.tagName("td"));
-      int id = Integer.parseInt(row.findElement(By.xpath("td[1]/input")).getAttribute("id"));;
-      String firstname = row.findElement(By.xpath("td[3]")).getText();
-      String lastname = row.findElement(By.xpath("td[2]")).getText();
-     // String[] phones = row.findElement(By.xpath("td[6]")).getText().split("\n");
-
-      contactCache.add(new ContactData().withId(id).withContactname(firstname).withContactlastname(lastname));
-             // .withContactphone(phones[0]).withMobilephone(phones[1]).withWorkphone(phones[2]));
-
-     // int id = Integer.parseInt(element.findElement(By.xpath("td[1]/input")).getAttribute("id"));
-    //  String name = element.findElement(By.xpath("td[3]")).getText();
-     // String lastname = element.findElement(By.xpath("td[2]")).getText();
-
-    }
-    contactCache= new Contacts();
     List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
-
 
     for (WebElement element : elements)
     {
@@ -169,7 +145,6 @@ private Contacts contactCache = null;
       ContactData contact = new ContactData().withId(id).withContactname(name).withContactlastname(lastname);
       contactCache.add(contact);
     }
-
 
     return new Contacts(contactCache);
   }
