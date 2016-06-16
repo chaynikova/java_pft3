@@ -11,7 +11,14 @@ public class ContactData {
   private String group;
   private String mobilephone;
   private String workphone;
-
+  private String allPhones;
+  private String allMail;
+  private String allEmail;
+  private String email;
+  private String email2;
+  private String email3;
+  private String mail;
+  private String mail2;
   private int id =Integer.MAX_VALUE;
 
 
@@ -41,17 +48,33 @@ public class ContactData {
     return contactbirthyear;
   }
 
-  public String getContactphone() {
-    return contactphone;
-  }
+  public String getContactphone() {    return contactphone;  }
+
+  public String getMobilephone() {return mobilephone;}
+
+  public String getWorkphone() {return workphone; }
 
   public String getGroup() {
     return group;
   }
 
-  public String getMobilephone() {return mobilephone;}
+  public String getMail() {return mail;  }
 
-  public String getWorkphone() {return workphone; }
+  public String getMail2() {    return mail2;  }
+
+  public String getEmail() { return email;  }
+
+  public String getEmail2() { return email2;  }
+
+  public String getEmail3() { return email3;  }
+
+  public String getAllPhones() {return allPhones;  }
+
+  public String getAllMail() {  return allMail; }
+
+  public String getAllEmail() {   return allEmail;  }
+
+
 
   public Integer id() {
     return id;
@@ -85,6 +108,15 @@ public class ContactData {
     this.contactphone = contactphone;
     return this;
   }
+  public ContactData withMobilephone(String mobilephone) {
+    this.mobilephone = mobilephone;
+    return this;
+  }
+
+  public ContactData withWorkphone(String workphone) {
+    this.workphone = workphone;
+    return this;
+  }
 
   public ContactData withContactmiddlename(String contactmiddlename) {
     this.contactmiddlename = contactmiddlename;
@@ -100,24 +132,56 @@ public class ContactData {
     this.group = group;
     return this;
   }
-
-  public ContactData withMobilephone(String mobilephone) {
-    this.mobilephone = mobilephone;
+  public ContactData withMail(String mail) {
+    this.mail = mail;
     return this;
   }
 
-  public ContactData withWorkphone(String workphone) {
-    this.workphone = workphone;
+  public ContactData withEmail(String email) {
+    this.email = email;
     return this;
   }
 
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  public ContactData withAllMail(String allMail) {
+    this.allMail = allMail;
+    return this;
+  }
+
+
+  public ContactData withMail2(String mail2) {
+    this.mail2 = mail2;
+    return this;
+  }
+  public ContactData withAllEmail(String allEmail) {
+    this.allEmail = allEmail;
+    return this;
+  }
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
 
   @Override
   public String toString() {
     return "ContactData{" +
-            "id=" + id +
-            ", contactname='" + contactname + '\'' +
+            "contactname='" + contactname + '\'' +
             ", contactlastname='" + contactlastname + '\'' +
+            ", mail='" + mail + '\'' +
+            ", mail2='" + mail2 + '\'' +
+            ", id=" + id +
+            ", workphone='" + workphone + '\'' +
+            ", mobilephone='" + mobilephone + '\'' +
+            ", contactphone='" + contactphone + '\'' +
             '}';
   }
 
@@ -130,7 +194,11 @@ public class ContactData {
 
     if (id != that.id) return false;
     if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
-    return contactlastname != null ? contactlastname.equals(that.contactlastname) : that.contactlastname == null;
+    if (contactlastname != null ? !contactlastname.equals(that.contactlastname) : that.contactlastname != null)
+      return false;
+    if (contactphone != null ? !contactphone.equals(that.contactphone) : that.contactphone != null) return false;
+    if (mobilephone != null ? !mobilephone.equals(that.mobilephone) : that.mobilephone != null) return false;
+    return workphone != null ? workphone.equals(that.workphone) : that.workphone == null;
 
   }
 
@@ -138,6 +206,9 @@ public class ContactData {
   public int hashCode() {
     int result = contactname != null ? contactname.hashCode() : 0;
     result = 31 * result + (contactlastname != null ? contactlastname.hashCode() : 0);
+    result = 31 * result + (contactphone != null ? contactphone.hashCode() : 0);
+    result = 31 * result + (mobilephone != null ? mobilephone.hashCode() : 0);
+    result = 31 * result + (workphone != null ? workphone.hashCode() : 0);
     result = 31 * result + id;
     return result;
   }

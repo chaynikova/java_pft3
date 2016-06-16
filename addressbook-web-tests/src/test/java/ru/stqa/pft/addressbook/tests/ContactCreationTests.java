@@ -22,7 +22,8 @@ public class ContactCreationTests extends TestBase {
     app.goTo().contactPage();
     ContactData contact = new ContactData().withContactname("test2").withContactmiddlename("test2").withContactlastname("test2")
             .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg")
-            .withContactcompany("test2").withContactbirthyear("1985").withContactphone("0505005050").withGroup("second");
+            .withContactcompany("test2").withContactbirthyear("1985").withContactphone("0505005050").withMobilephone("06060060606").withWorkphone("0707007070").withGroup("second");
+
 
     app.contact().create(contact);
     app.goTo().homePage();
@@ -41,8 +42,8 @@ public class ContactCreationTests extends TestBase {
     app.goTo().homePage();
     Contacts before = app.contact().all();
     app.goTo().contactPage();
-    ContactData contact = new ContactData().withContactname("test2");//.withContactmiddlename("test2").withContactlastname("test2").withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985")
-            //.withContactphone("0505005050").withGroup("second");
+    ContactData contact = new ContactData().withContactname("test2").withContactmiddlename("test2").withContactlastname("test2").withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985")
+            .withContactphone("0505005050").withGroup("second");
 
     app.contact().create(contact);
     app.goTo().homePage();

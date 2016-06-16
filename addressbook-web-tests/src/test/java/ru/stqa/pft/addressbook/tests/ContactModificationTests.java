@@ -26,7 +26,8 @@ public class ContactModificationTests extends TestBase {
      if (app.contact().list().size() == 0) {
       app.goTo().contactPage();
       app.contact().create(new ContactData().withContactname("test2").withContactmiddlename("test2").withContactlastname("test2")
-              .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985").withContactphone("0505005050").withGroup("second"));
+              .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985")
+              .withContactphone("0505005050").withMobilephone("06060060606").withWorkphone("0707007070").withGroup("second"));
     }
   }
 
@@ -36,7 +37,8 @@ public class ContactModificationTests extends TestBase {
     Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContact.getId()).withContactname("test2").withContactmiddlename("test2").withContactlastname("test2")
-            .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985").withContactphone("0505005050");
+            .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2")
+            .withContactbirthyear("1985").withContactphone("0505005050").withMobilephone("06060060606").withWorkphone("0707007070");
     app.contact().modify(contact);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();

@@ -24,7 +24,8 @@ public class ContactDeletionTests extends TestBase{
     if (app.contact().list().size() == 0) {
       app.goTo().contactPage();
       app.contact().create(new ContactData().withContactname("test2").withContactmiddlename("test2").withContactlastname("test2")
-              .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985").withContactphone("0505005050").withGroup("second"));
+              .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985")
+              .withContactphone("0505005050").withMobilephone("06060060606").withWorkphone("0707007070").withGroup("second"));
     }
   }
 
