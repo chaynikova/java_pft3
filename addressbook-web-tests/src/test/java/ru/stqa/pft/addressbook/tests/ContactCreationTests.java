@@ -11,14 +11,13 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactCreationTests extends TestBase {
 
-  @Test(enabled = false)
+  @Test
   public void testContactCreation() {
     app.goTo().homePage();
     Contacts before = app.contact().all();
     app.goTo().contactPage();
-    ContactData contact = new ContactData().withContactname("test2").withContactmiddlename("test2").withContactlastname("test2")
-            .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985")
-            .withContactphone("0505005050").withGroup("second");
+    ContactData contact = new ContactData().withContactname("test2").withContactlastname("test2");
+                      //  .withContactphone("0505005050").withMobilephone("0605006060").withWorkphone("0705007070");
 
     app.contact().create(contact);
     app.goTo().homePage();
@@ -26,5 +25,21 @@ public class ContactCreationTests extends TestBase {
       Contacts after = app.contact().all();
       assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
+  }
+
+  @Test(enabled = false)
+  public void testBadContactCreation() {
+    app.goTo().homePage();
+    Contacts before = app.contact().all();
+    app.goTo().contactPage();
+    ContactData contact = new ContactData().withContactname("test2");//.withContactmiddlename("test2").withContactlastname("test2").withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withContactbirthyear("1985")
+            //.withContactphone("0505005050").withGroup("second");
+
+    app.contact().create(contact);
+    app.goTo().homePage();
+    assertThat(app.contact().count(), equalTo(before.size()));
+    Contacts after = app.contact().all();
+
+    assertThat(after, equalTo(before));
   }
 }
