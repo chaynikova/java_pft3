@@ -9,6 +9,9 @@ public class ContactData {
   private  String contactmiddlename;
   private  String filepath;
   private String group;
+  private String mobilephone;
+  private String workphone;
+
   private int id =Integer.MAX_VALUE;
 
 
@@ -45,6 +48,10 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
+  public String getMobilephone() {return mobilephone;}
+
+  public String getWorkphone() {return workphone; }
 
   public Integer id() {
     return id;
@@ -91,6 +98,16 @@ public class ContactData {
 
   public ContactData withGroup(String group) {
     this.group = group;
+    return this;
+  }
+
+  public ContactData withMobilephone(String mobilephone) {
+    this.mobilephone = mobilephone;
+    return this;
+  }
+
+  public ContactData withWorkphone(String workphone) {
+    this.workphone = workphone;
     return this;
   }
 
