@@ -38,6 +38,7 @@ public class ContactPhoneTests extends TestBase {
 
   }
 
+
   private String mergePhones(ContactData contact) {
     return Arrays.asList(contact.getContactphone(), contact.getMobilephone(), contact.getWorkphone())
             .stream().filter((s)->! s.equals(""))
@@ -73,3 +74,4 @@ public class ContactPhoneTests extends TestBase {
     return email.replaceAll("\\s", "").replaceAll("-()","");
   }
 }
+
