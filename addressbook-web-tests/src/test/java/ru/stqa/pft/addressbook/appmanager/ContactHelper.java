@@ -39,8 +39,8 @@ public class ContactHelper extends HelperBase {
     sendkeys(By.name("photo"), contactData.getFilepath());
     type(By.name("company"), contactData.getContactcompany());
     type(By.name("home"), contactData.getContactphone());
-    type(By.name("mobile"), contactData.getMobilephone());
-    type(By.name("work"), contactData.getWorkphone());
+  //type(By.name("mobile"), contactData.getMobilephone());
+  //  type(By.name("work"), contactData.getWorkphone());
 
     if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[9]")).isSelected()) {
       click(By.xpath("//div[@id='content']/form/select[1]//option[9]"));
@@ -136,6 +136,7 @@ private Contacts contactCache = null;
   public Contacts all() {
     if (contactCache != null){
       return new Contacts(contactCache);
+
          }
     contactCache = new Contacts();
     List<WebElement> rows = wd.findElements(By.xpath("//tr[@name='entry']"));
@@ -155,9 +156,20 @@ private Contacts contactCache = null;
     //  String name = element.findElement(By.xpath("td[3]")).getText();
      // String lastname = element.findElement(By.xpath("td[2]")).getText();
 
-     // ContactData contact = new ContactData().withId(id).withContactname(name).withContactlastname(lastname);
-      //contactCache.add(contact);
     }
+    contactCache= new Contacts();
+    List<WebElement> elements = wd.findElements(By.xpath("//tr[@name='entry']"));
+
+
+    for (WebElement element : elements)
+    {
+      int id = Integer.parseInt(element.findElement(By.xpath("td[1]/input")).getAttribute("id"));
+      String name = element.findElement(By.xpath("td[3]")).getText();
+      String lastname = element.findElement(By.xpath("td[2]")).getText();
+      ContactData contact = new ContactData().withId(id).withContactname(name).withContactlastname(lastname);
+      contactCache.add(contact);
+    }
+
 
     return new Contacts(contactCache);
   }
@@ -174,24 +186,4 @@ private Contacts contactCache = null;
 
 
 
-public ContactData infoFromEditForm(ContactData contact){
-
-  initContactModificationById(contact.getId());
-  String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
-  String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
-  String home = wd.findElement(By.name("home")).getAttribute("value");
-  String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
-  String work = wd.findElement(By.name("work")).getAttribute("value");
-  wd.navigate().back();
-  return new ContactData().withId(contact.getId()).withContactname(firstname).withContactlastname(lastname)
-          .withContactphone(home).withMobilephone(mobile).withWorkphone(work);
-}
-
-
-  private void initContactModificationById(int id) {
-    WebElement checkbox = wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
-    WebElement row = checkbox.findElement(By.xpath("./../.."));
-    List<WebElement> cells = row.findElements(By.tagName("td"));
-    cells.get(7).findElement(By.tagName("a")).click();
-  }
 }
