@@ -153,13 +153,16 @@ private Contacts contactCache = null;
       int id = Integer.parseInt(element.findElement(By.xpath("td[1]/input")).getAttribute("id"));
       String name = element.findElement(By.xpath("td[3]")).getText();
       String lastname = element.findElement(By.xpath("td[2]")).getText();
-      String[] phones = element.findElement(By.xpath("td[6]")).getText().split("\n");
+    //  String[] phones = element.findElement(By.xpath("td[6]")).getText().split("\n");
+      String phone = element.findElement(By.xpath("td[6]")).getText();
 
 
-      //ContactData contact = new ContactData().withId(id).withContactname(name).withContactlastname(lastname)
-      //        .withContactphone(phones[0]).withMobilephone(phones[1]).withWorkphone(phones[2]);
+   //   //ContactData contact = new ContactData().withId(id).withContactname(name).withContactlastname(lastname)
+    //  //        .withContactphone(phones[0]).withMobilephone(phones[1]).withWorkphone(phones[2]);
+     // contactCache.add(new ContactData().withId(id).withContactname(name).withContactlastname(lastname)
+              //.withContactphone(phones[0]).withMobilephone(phones[1]).withWorkphone(phones[2]));
       contactCache.add(new ContactData().withId(id).withContactname(name).withContactlastname(lastname)
-              .withContactphone(phones[0]).withMobilephone(phones[1]).withWorkphone(phones[2]));
+              .withContactphone(phone));
     }
 
     return new Contacts(contactCache);

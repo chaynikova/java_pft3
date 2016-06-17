@@ -71,6 +71,15 @@ public class ContactData {
 
   public String getAllPhones() {return allPhones;  }
 
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "contactname='" + contactname + '\'' +
+            ", contactlastname='" + contactlastname + '\'' +
+            ", contactphone='" + contactphone + '\'' +
+            '}';
+  }
+
   public String getAllMail() {  return allMail; }
 
   public String getAllEmail() {   return allEmail;  }
@@ -176,20 +185,6 @@ public class ContactData {
   public ContactData withPhoto(File photo) {
     this.photo = photo;
     return this;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "contactname='" + contactname + '\'' +
-            ", contactlastname='" + contactlastname + '\'' +
-            ", mail='" + mail + '\'' +
-            ", mail2='" + mail2 + '\'' +
-            ", id=" + id +
-            ", workphone='" + workphone + '\'' +
-            ", mobilephone='" + mobilephone + '\'' +
-            ", contactphone='" + contactphone + '\'' +
-            '}';
   }
 
   @Override
