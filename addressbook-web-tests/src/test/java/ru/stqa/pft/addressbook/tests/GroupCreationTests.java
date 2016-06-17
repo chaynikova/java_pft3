@@ -20,14 +20,14 @@ public class GroupCreationTests extends TestBase {
   @DataProvider
   public Iterator<Object[]> validGroups() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-   BufferedReader reader = new BufferedReader( new FileReader(new File("src\\test\\resources\\groups.csv")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\ru\\stqa\\pft\\addressbook\\resources\\groups.csv")));
     String line = reader.readLine();
-    while (line != null){
-     String[] split = line.split(";");
-      list.add(new Object[]{new GroupData().withName(split[0]).withHeader(split[1]).withFooter(split[2])});
-      line = reader.readLine();
-
+    while (line!= null){
+      String[] split = line.split(",");
+      list.add(new Object[] {new GroupData().withName(split[0]).withHeader(split[0]).withFooter(split[0])} );
+      line= reader.readLine();
     }
+  //list.add(new Object[] {new GroupData().withName("test").withHeader("22").withFooter("33")});
     return list.iterator();
   }
 

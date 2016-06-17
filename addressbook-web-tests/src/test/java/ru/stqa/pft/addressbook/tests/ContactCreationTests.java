@@ -19,14 +19,14 @@ public class ContactCreationTests extends TestBase {
   @DataProvider
   public Iterator<Object[]> validContacts() throws IOException {
     List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\ru\\stqa\\pft\\addressbook\\resources\\contact.csv")));
     String line = reader.readLine();
-    while (line != null){
-      String[] split = line.split(";");
-      list.add(new Object[]{new ContactData().withContactname(split[0]).withContactlastname(split[1]).withContactphone(split[2])});
-      line = reader.readLine();
-
+    while (line!= null){
+      String[] split = line.split(",");
+      list.add(new Object[]{ new ContactData().withContactname(split[0]).withContactlastname(split[1]).withContactphone(split[2]) });
+      line= reader.readLine();
     }
+    //list.add(new Object[] {new GroupData().withName("test").withHeader("22").withFooter("33")});
     return list.iterator();
   }
 
