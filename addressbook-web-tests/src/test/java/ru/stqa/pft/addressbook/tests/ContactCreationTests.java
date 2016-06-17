@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.thoughtworks.xstream.XStream;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -9,6 +10,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -18,17 +20,22 @@ public class ContactCreationTests extends TestBase {
 
   @DataProvider
   public Iterator<Object[]> validContacts() throws IOException {
-    List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\ru\\stqa\\pft\\addressbook\\resources\\contact.csv")));
-    String line = reader.readLine();
-    while (line!= null){
-      String[] split = line.split(",");
-      list.add(new Object[]{ new ContactData().withContactname(split[0]).withContactlastname(split[1]).withContactphone(split[2]) });
-      line= reader.readLine();
-    }
-    //list.add(new Object[] {new GroupData().withName("test").withHeader("22").withFooter("33")});
-    return list.iterator();
+    try (BufferedReader reader = new BufferedReader(new FileReader(new File("src\\test\\java\\ru\\stqa\\pft\\addressbook\\resources\\contact.xml")))) {
+      String xml = "";
+      String line = reader.readLine();
+      while (line != null) {
+        xml += line;
+        line = reader.readLine();
+        //String[] split = line.split(",");
+        //  list.add(new Object[] {new GroupData().withName(split[0]).withHeader(split[0]).withFooter(split[0])} );
+      }
+    XStream xstream = new XStream();
+    xstream.processAnnotations(ContactData.class);
+    List<ContactData> contact = (List<ContactData>) xstream.fromXML(xml);
+  //  System.out.println("some text");
+    return contact.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
   }
+    }
 
   @Test(dataProvider = "validContacts")
   public void testContactCreation(ContactData contact) {

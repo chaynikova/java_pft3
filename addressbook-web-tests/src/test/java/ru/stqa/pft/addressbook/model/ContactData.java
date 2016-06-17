@@ -1,8 +1,14 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
 
+@XStreamAlias("contact")
 public class ContactData {
+  @XStreamOmitField
+  private int id =Integer.MAX_VALUE;
   private  String contactname;
   private  String contactlastname;
   private  String contactcompany;
@@ -21,7 +27,6 @@ public class ContactData {
   private String email3;
   private String mail;
   private String mail2;
-  private int id =Integer.MAX_VALUE;
   private File photo;
 
 
@@ -78,6 +83,28 @@ public class ContactData {
             ", contactlastname='" + contactlastname + '\'' +
             ", contactphone='" + contactphone + '\'' +
             '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
+    if (contactlastname != null ? !contactlastname.equals(that.contactlastname) : that.contactlastname != null)
+      return false;
+    return contactphone != null ? contactphone.equals(that.contactphone) : that.contactphone == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = contactname != null ? contactname.hashCode() : 0;
+    result = 31 * result + (contactlastname != null ? contactlastname.hashCode() : 0);
+    result = 31 * result + (contactphone != null ? contactphone.hashCode() : 0);
+    return result;
   }
 
   public String getAllMail() {  return allMail; }
@@ -187,31 +214,4 @@ public class ContactData {
     return this;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
-    if (contactlastname != null ? !contactlastname.equals(that.contactlastname) : that.contactlastname != null)
-      return false;
-    if (contactphone != null ? !contactphone.equals(that.contactphone) : that.contactphone != null) return false;
-    if (mobilephone != null ? !mobilephone.equals(that.mobilephone) : that.mobilephone != null) return false;
-    return workphone != null ? workphone.equals(that.workphone) : that.workphone == null;
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = contactname != null ? contactname.hashCode() : 0;
-    result = 31 * result + (contactlastname != null ? contactlastname.hashCode() : 0);
-    result = 31 * result + (contactphone != null ? contactphone.hashCode() : 0);
-    result = 31 * result + (mobilephone != null ? mobilephone.hashCode() : 0);
-    result = 31 * result + (workphone != null ? workphone.hashCode() : 0);
-    result = 31 * result + id;
-    return result;
-  }
 }
