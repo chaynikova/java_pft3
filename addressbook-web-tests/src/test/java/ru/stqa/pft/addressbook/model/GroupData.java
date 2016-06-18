@@ -5,10 +5,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @XStreamAlias("groups")
 @Entity
@@ -23,10 +20,8 @@ public class GroupData {
   @Column (name = "group_name")
   private  String name;
 
-//  @Expose
- // @Column (name = "group_parent_id")
- // @Type(type = "int")
- // private  String parentGroup;
+ @Transient
+  private  String parentGroup;
 
   @Expose
   @Column (name = "group_header")
@@ -47,10 +42,10 @@ public class GroupData {
     return this;
   }
 
- // public GroupData withParentGroup(String parentGroup) {
-  //  this.parentGroup = parentGroup;
- //   return this;
-//  }
+  public GroupData withParentGroup(String parentGroup) {
+    this.parentGroup = parentGroup;
+    return this;
+  }
 
   public GroupData withHeader(String header) {
     this.header = header;
@@ -76,7 +71,7 @@ public class GroupData {
     return name;
   }
 
- // public String getParentGroup() { return parentGroup;  }
+  public String getParentGroup() { return parentGroup;  }
 
   public String getHeader() {
     return header;

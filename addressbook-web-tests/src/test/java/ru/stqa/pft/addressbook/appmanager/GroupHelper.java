@@ -32,9 +32,9 @@ public class GroupHelper extends HelperBase {
 
   public void fillGroupForm(GroupData groupData, boolean creation) {
     type(By.name("group_name"), groupData.getName());
-   // if (!creation) {
-  //    new Select(wd.findElement(By.name("group_parent_id"))).selectByVisibleText(groupData.getParentGroup());
-  //  }
+    if (!creation) {
+      new Select(wd.findElement(By.name("group_parent_id"))).selectByVisibleText(groupData.getParentGroup());
+   }
     type(By.name("group_header"), groupData.getHeader());
     type(By.name("group_footer"), groupData.getFooter());
 
