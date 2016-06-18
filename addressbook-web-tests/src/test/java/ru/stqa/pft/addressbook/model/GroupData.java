@@ -1,16 +1,44 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @XStreamAlias("groups")
+@Entity
+@Table(name = "group_list")
 public class GroupData {
   @XStreamOmitField
-  private  int id = Integer.MAX_VALUE;;
+  @Id
+  @Column(name = "group_id")
+  private  int id = Integer.MAX_VALUE;
+
+  @Expose
+  @Column (name = "group_name")
   private  String name;
-  private  String parentGroup;
+
+//  @Expose
+ // @Column (name = "group_parent_id")
+ // @Type(type = "int")
+ // private  String parentGroup;
+
+  @Expose
+  @Column (name = "group_header")
+  @Type(type = "text")
   private  String header;
+
+
+  @Expose
+  @Column (name = "group_footer")
+  @Type(type = "text")
   private  String footer;
+
 
 
   public GroupData withId(int id)
@@ -19,10 +47,10 @@ public class GroupData {
     return this;
   }
 
-  public GroupData withParentGroup(String parentGroup) {
-    this.parentGroup = parentGroup;
-    return this;
-  }
+ // public GroupData withParentGroup(String parentGroup) {
+  //  this.parentGroup = parentGroup;
+ //   return this;
+//  }
 
   public GroupData withHeader(String header) {
     this.header = header;
@@ -48,7 +76,7 @@ public class GroupData {
     return name;
   }
 
-  public String getParentGroup() { return parentGroup;  }
+ // public String getParentGroup() { return parentGroup;  }
 
   public String getHeader() {
     return header;
