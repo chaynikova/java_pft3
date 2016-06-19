@@ -26,7 +26,29 @@ public class ContactData {
   @Transient
   private  String contactcompany;
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
+    return contactlastname != null ? contactlastname.equals(that.contactlastname) : that.contactlastname == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (contactname != null ? contactname.hashCode() : 0);
+    result = 31 * result + (contactlastname != null ? contactlastname.hashCode() : 0);
+    return result;
+  }
+
   @Transient
+
   private  String contactbirthyear;
 
   @Column(name = "home")
@@ -122,28 +144,6 @@ public class ContactData {
             ", contactlastname='" + contactlastname + '\'' +
             ", contactphone='" + contactphone + '\'' +
             '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
-    if (contactlastname != null ? !contactlastname.equals(that.contactlastname) : that.contactlastname != null)
-      return false;
-    return contactphone != null ? contactphone.equals(that.contactphone) : that.contactphone == null;
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = contactname != null ? contactname.hashCode() : 0;
-    result = 31 * result + (contactlastname != null ? contactlastname.hashCode() : 0);
-    result = 31 * result + (contactphone != null ? contactphone.hashCode() : 0);
-    return result;
   }
 
   public String getAllMail() {  return allMail; }

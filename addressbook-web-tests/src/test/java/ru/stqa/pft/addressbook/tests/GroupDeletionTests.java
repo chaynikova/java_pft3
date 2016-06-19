@@ -24,8 +24,14 @@ public class GroupDeletionTests extends TestBase {
     if (app.db().groups().size()==0){
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("first"));
-         }
-     }
+
+    }
+
+   // app.goTo().groupPage();
+   // if (app.group().list().size()==0) {
+    //  app.group().create(new GroupData().withName("second"));
+   // }
+  }
 
   @Test
   public void testGroupDeletion() {
