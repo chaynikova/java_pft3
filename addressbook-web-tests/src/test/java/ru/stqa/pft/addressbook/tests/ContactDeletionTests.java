@@ -30,12 +30,12 @@ public class ContactDeletionTests extends TestBase{
     }
   }
 
-  @Test
+  @Test(enabled = false)
   public void testContactDeletion(){
     app.goTo().homePage();
     Contacts before = app.db().contacts();
     ContactData deletedContact = before.iterator().next();
-    //app.goTo().contactPage();
+    app.goTo().contactPage();
     app.goTo().homePage();
     app.contact().delete(deletedContact);
 
