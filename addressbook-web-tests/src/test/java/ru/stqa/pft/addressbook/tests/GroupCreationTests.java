@@ -49,6 +49,7 @@ try (BufferedReader reader = new BufferedReader(new FileReader(new File("src\\te
     assertThat(after.size(), equalTo(before.size() + 1));
     assertThat(after, equalTo(
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
+    verifyGroupListInUI();
   }
 
   // @Test(enabled = false)
