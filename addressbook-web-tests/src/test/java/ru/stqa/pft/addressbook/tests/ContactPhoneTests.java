@@ -24,7 +24,7 @@ public class ContactPhoneTests extends TestBase {
       app.contact().create(new ContactData().withContactname("test7").withContactmiddlename("test2").withContactlastname("test7")
               .withFilepath("C:\\Users\\t.chaynikova\\Desktop\\ToDelete\\53826235_fr.jpg").withContactcompany("test2").withMail("111")
               .withContactbirthyear("1985").withContactphone("0505005050")
-              .withMobilephone("06060060606").withWorkphone("0707007070").withMail2("222").withEmail("test2.test2test2.@test2").withEmail2("testemail").withGroup("second"));
+              .withMobilephone("06060060606").withWorkphone("0707007070").withMail2("222").withEmail("test2.test2test2.@test2").withEmail2("testemail"));//.withGroup("second"));
     }
   }
   @Test

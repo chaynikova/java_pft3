@@ -57,11 +57,11 @@ public class ContactHelper extends HelperBase {
     }
     type(By.name("byear"), contactData.getContactbirthyear());
 
-    if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else {
-      Assert.assertFalse(isElementPresent(By.name("new group")));
-    }
+    //if (creation) {
+    ///  new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+   // } else {
+    //  Assert.assertFalse(isElementPresent(By.name("new group")));
+   // }
   }
 
   public void submitContactCreation() {
