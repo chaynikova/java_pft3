@@ -72,7 +72,6 @@ public class ContactData {
   @Column(name = "mobile")
   @Type(type="text")
   private String mobilephone;
-
   @Column(name = "work")
   @Type(type="text")
   private String workphone;

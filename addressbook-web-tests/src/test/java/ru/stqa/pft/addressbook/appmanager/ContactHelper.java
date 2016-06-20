@@ -63,7 +63,11 @@ public class ContactHelper extends HelperBase {
     //  Assert.assertFalse(isElementPresent(By.name("new group")));
    // }
   }
+public void gotoContactGroup(){
+  new Select(wd.findElement(By.name("group"))).selectByVisibleText("first");
 
+
+}
   public void submitContactCreation() {
     click(By.name("submit"));
   }
@@ -256,6 +260,29 @@ private Contacts contactCache = null;
       return new ContactData().withId(contact.getId()).withContactphone(home).withMobilephone(mobile).withWorkphone(work);
 
     }
+  public void submitContactToGroup() {
+
+      click(By.name("add"));
+  }
+
+  public void removeContactFromGroupList() {
+
+    click(By.name("remove"));
+  }
+  public boolean isThereAContactInGroup() {
+
+    return isElementPresent(By.name("selected[]"));
+  }
+
+    public void linkContactAndGroup(ContactData contact) {
+        selectContactById(contact.getId());
+        submitContactToGroup();
+    }
+  public void removeLinkContactAndGroup(ContactData contact) {
+    selectContactById(contact.getId());
+    removeContactFromGroupList();
+
+  }
 
         }
 

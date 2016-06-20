@@ -55,8 +55,9 @@ public class GroupData {
 
     @Expose
   @Column (name = "group_footer")
-  @Type(type = "text")
+    @Type(type = "text")
   private  String footer;
+
 @ManyToMany(mappedBy = "groups")
 private Set<ContactData> contacts = new HashSet<ContactData>();
 
@@ -66,9 +67,8 @@ private Set<ContactData> contacts = new HashSet<ContactData>();
     return this;
   }
 
-    public Set<ContactData> getContacts() {
-       return  new Contacts(contacts);
-
+    public Contacts getContacts() {
+      return new Contacts(contacts);
     }
 
     public GroupData withParentGroup(String parentGroup) {
