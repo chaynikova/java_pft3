@@ -44,8 +44,8 @@ public class RemoveContactFromGroup extends TestBase {
         System.out.println(beforeGroups);
         app.goTo().homePage();
         app.contact().linkContactAndGroup(existingContact);
-            app.goTo().homePage();
-            app.contact().gotoContactGroup(groups.iterator().next());
+          app.goTo().homePage();
+          app.contact().gotoContactGroup(groups.iterator().next());
         app.contact().removeLinkContactAndGroup(existingContact);
         app.goTo().homePage();
         app.contact().gotoContactGroup(groups.iterator().next());
