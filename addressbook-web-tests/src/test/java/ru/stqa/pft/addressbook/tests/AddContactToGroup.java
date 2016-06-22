@@ -35,36 +35,29 @@ public class AddContactToGroup extends TestBase {
     @Test
 
     public void addContactToGroup() {
-        Groups beforeGroups = app.db().groups();
-        beforeGroups.iterator().next();
-
+        Groups groups = app.db().groups();
+        groups.iterator().next();
         Contacts beforeContacts = app.db().contacts();
         ContactData existingContact = beforeContacts.iterator().next();
-        beforeGroups = existingContact.getGroups();
+       Groups beforeGroups = existingContact.getGroups();
         System.out.println(beforeGroups);
         app.goTo().homePage();
         app.contact().linkContactAndGroup(existingContact);
         app.goTo().homePage();
-        app.contact().gotoContactGroup();
+        app.contact().gotoContactGroup(groups.iterator().next());
         app.contact().isThereAContactInGroup();
+        beforeContacts = app.db().contacts();
+         existingContact = beforeContacts.iterator().next();
         Groups afterGroups = existingContact.getGroups();
         System.out.println(afterGroups);
 
         assertThat(afterGroups, equalTo(beforeGroups));
 
+
         }
 
 
-
-    @Test(enabled = false)
-
-    public void removeContactFromGroup()
-    {
-//check before no contacts in group
-        //edit contact or group& remove contact from group
-        //check after contacts in group
-
     }
-}
+
 
 

@@ -10,8 +10,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -63,8 +65,8 @@ public class ContactHelper extends HelperBase {
     //  Assert.assertFalse(isElementPresent(By.name("new group")));
    // }
   }
-public void gotoContactGroup(){
-  new Select(wd.findElement(By.name("group"))).selectByVisibleText("first");
+public void gotoContactGroup(GroupData group){
+  new Select(wd.findElement(By.name("group"))).selectByVisibleText(group.getName());
 
 
 }

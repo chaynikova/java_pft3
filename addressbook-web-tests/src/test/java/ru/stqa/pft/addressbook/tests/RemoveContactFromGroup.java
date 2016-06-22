@@ -35,20 +35,21 @@ public class RemoveContactFromGroup extends TestBase {
         @Test
 
     public void removeContactFromGroup() {
-        Groups beforeGroups = app.db().groups();
-        beforeGroups.iterator().next();
+
+          Groups groups = app.db().groups();
+          groups.iterator().next();
 
         Contacts beforeContacts = app.db().contacts();
         ContactData existingContact = beforeContacts.iterator().next();
-        beforeGroups = existingContact.getGroups();
+        Groups beforeGroups = existingContact.getGroups();
         System.out.println(beforeGroups);
         app.goTo().homePage();
         app.contact().linkContactAndGroup(existingContact);
             app.goTo().homePage();
-            app.contact().gotoContactGroup();
+            app.contact().gotoContactGroup(groups.iterator().next());
         app.contact().removeLinkContactAndGroup(existingContact);
         app.goTo().homePage();
-        app.contact().gotoContactGroup();
+        app.contact().gotoContactGroup(groups.iterator().next());
         Groups afterGroups = existingContact.getGroups();
         assertThat(afterGroups, equalTo(beforeGroups));
     }
